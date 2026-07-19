@@ -1,0 +1,6 @@
+region,total_data_volume_mb,avg_signal_strength,tower_count,record_count,execution_date
+Central,3477.2,-82.79,8,24,2025-07-23
+East,3093.5,-80.78,8,19,2025-07-23
+North,3505.2,-81.89,8,23,2025-07-23
+South,2818.7,-80.71,7,20,2025-07-23
+West,2416.6,-82.51,6,14,2025-07-23
