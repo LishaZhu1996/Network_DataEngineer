@@ -123,6 +123,7 @@ end_pipeline ──────────────────────�
 
 ### Daily run (default)
 Processes the Airflow execution date (`ds`) automatically at 02:00 UTC.
+If some issue happens and fail the pipeline, the number of the retry is 3 and retry window is 5 mins.
 If Dag run multiple times per day, idempotent logic is applied using `overwrite_filter`. 
 
 ### Backfill / reload
