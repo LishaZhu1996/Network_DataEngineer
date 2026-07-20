@@ -21,7 +21,7 @@ Each date in the range is processed independently:
   start_run
       │  Insert 'running' rows into pipeline_control for all tables
       │
-  check_s3_file  ──(branch)─────────────-─────┐
+  check_s3_file  ──(branch)───────────────────┐
       │ file found                            │ no file for any date
       │                                       │
   ingest_bronze                          mark_skipped
@@ -49,7 +49,7 @@ Each date in the range is processed independently:
   mark_success                                │
       │  Update control table → 'success'     │
       │                                       │
-  end_pipeline ──────────────────────────-────┘
+  end_pipeline ───────────────────────────────┘
 """
 import logging
 import os
