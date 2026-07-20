@@ -49,7 +49,7 @@ Each date in the range is processed independently:
   mark_success                                │
       │  Update control table → 'success'     │
       │                                       │
-  end_pipeline ──────────────────────────────┘
+  end_pipeline ──────────────────────────-────┘
 """
 import logging
 import os
