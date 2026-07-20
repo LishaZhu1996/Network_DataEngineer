@@ -7,8 +7,8 @@ Implements a **Bronze → Silver → Gold** medallion architecture orchestrated 
 
 ## Assumption
 - The file will arrive at S3 everyday before 2am.
-- It can happen that the destination doesn't have new file for specific day, but as long as the file is detected, it should not be empty (should have some data for that day)。
-- For a given timestamp, the natrue primary key should be the combination of tower_id + region。
+- It can happen that the destination doesn't have new file for specific day, but as long as the file is detected, it should not be empty (should have some data for that day).
+- For a given timestamp, the natrue primary key should be the combination of tower_id + region.
 - Noraml range of signal strenth is (-120.0 , -40.0) and data volumne should be larger than 0.
 - Notification needed when all of the retries failed.
 
