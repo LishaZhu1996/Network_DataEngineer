@@ -83,7 +83,7 @@ Save necessary information about the dag run, including run_id, table_name, exec
 
 ---
 
-## DAG flow
+# DAG flow
 
 ```
 start_run
@@ -195,7 +195,7 @@ Slack notifications are sent via `_on_failure` callback and `_on_sla_miss` callb
 
 ---
 
-## Data Ingestion/Models
+# Data Ingestion/Models
 
 ### Schema evolution
 
