@@ -195,7 +195,19 @@ Slack notifications are sent via `_on_failure` callback and `_on_sla_miss` callb
 
 ---
 
-## Data Models
+## Data Ingestion/Models
+
+### Schema evolution
+
+The pipeline detects and handles source schema changes automatically:
+
+| Change type | DQ severity | Write-layer behaviour |
+|-------------|-------------|----------------------|
+| New column added in source | `warn` | `write_iceberg` calls `update_schema().add_column()` before appending — existing rows show `NULL` for the new column |
+| Column dropped from source | `warn` | Iceberg column retained; new rows write `NULL` for that column |
+| Column type changed (e.g. float→string) | `fail` | Pipeline aborts — prevents data corruption in existing Iceberg rows |
+
+The detection runs in `_check_schema_evolution` (DQ layer) and the auto-evolve runs in `_evolve_schema` inside `write_iceberg` (utils layer) — catching it in DQ first gives a clear alert before any write is attempted.
 
 ---
 
@@ -215,19 +227,6 @@ Results written to `./data/dq_logs/dq_log_{date}.json`.
 When doing the DQ check, if any `'fail'` DQ check detected, the dag will be failed.
 
 ---
-
-### Schema evolution
-
-The pipeline detects and handles source schema changes automatically:
-
-| Change type | DQ severity | Write-layer behaviour |
-|-------------|-------------|----------------------|
-| New column added in source | `warn` | `write_iceberg` calls `update_schema().add_column()` before appending — existing rows show `NULL` for the new column |
-| Column dropped from source | `warn` | Iceberg column retained; new rows write `NULL` for that column |
-| Column type changed (e.g. float→string) | `fail` | Pipeline aborts — prevents data corruption in existing Iceberg rows |
-
-The detection runs in `_check_schema_evolution` (DQ layer) and the auto-evolve runs in `_evolve_schema` inside `write_iceberg` (utils layer) — catching it in DQ first gives a clear alert before any write is attempted.
-
 
 ### Bronze — Raw Copy
 
