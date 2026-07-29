@@ -207,7 +207,7 @@ The pipeline detects and handles source schema changes automatically:
 | Column dropped from source | `warn` | Iceberg column retained; new rows write `NULL` for that column |
 | Column type changed (e.g. float→string) | `fail` | Pipeline aborts — prevents data corruption in existing Iceberg rows |
 
-The detection runs in `_check_schema_evolution` (DQ layer) and the auto-evolve runs in `_evolve_schema` inside `write_iceberg` (utils layer) — catching it in DQ first gives a clear alert before any write is attempted.
+The auto-evolve runs in `_evolve_schema` inside `write_iceberg` (utils layer) — catching it in DQ first gives a clear alert before any write is attempted.
 
 ---
 
